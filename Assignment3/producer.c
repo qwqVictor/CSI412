@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]) {
         break;
     default:
         pid_t mypid = getpid();
-        printf("Parent: My pid = %d. My child has pid = %d\n", mypid, childpid);
+        printf("Parent: My pid = %d. I created child pid = %d\n", mypid, childpid);
         srand(time(NULL));
         int f = open("numbers.txt", O_CREAT | O_WRONLY, 0644);
         if (f == -1) {

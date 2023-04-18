@@ -12,12 +12,10 @@ int main(int argc, char const *argv[]) {
         perror("Error opening");
     }
     printf("File numbers.txt fd (consumer) is: %d\n", f);
-    printf("File numbers.txt content:\n");
     while (~scanf("%d", &size)) {
         if (size == 0) break;
         read(f, buf, size);
         sscanf(buf, "%d", &tmp);
-        printf("%d\n", tmp);
         if (tmp & 1)
             oddsum += tmp;
         else
