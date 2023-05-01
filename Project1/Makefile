@@ -1,7 +1,7 @@
 CC := gcc
 CFLAGS := -I.
-DEPS = 
-OBJECTS = mysh.o
+DEPS = limits.h execute.h parser.h
+OBJECTS = mysh.o execute.o parser.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)

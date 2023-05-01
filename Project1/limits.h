@@ -1,0 +1,8 @@
+#ifndef VICTORHUANG_SHELL_LIMITS_H
+#define VICTORHUANG_SHELL_LIMITS_H
+
+#define MAX_COMMANDS 10
+#define MAX_ARGS 20
+#define BUFFER_SIZE 1024
+
+#endif
