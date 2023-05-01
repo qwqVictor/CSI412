@@ -10,7 +10,7 @@ int main() {
     while (1) {
         int num_commands = 0;
         // read user input
-        printf("$ ");
+        printf("MyShPrompt> ");
         fgets(buffer, BUFFER_SIZE, stdin);
         if (feof(stdin)) {
             exit(EXIT_SUCCESS);
