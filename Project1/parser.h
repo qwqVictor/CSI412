@@ -3,6 +3,6 @@
 
 #include <string.h>
 #include "limits.h"
-extern void parse_command(char* command, char* commands[MAX_COMMANDS][MAX_ARGS], int* num_commands);
+int parse_command(char* command, char* commands[MAX_COMMANDS][MAX_ARGS], char* file_remap[2], int* num_commands);
 
 #endif
