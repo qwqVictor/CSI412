@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]) {
     char* file_remap[2];
     // read the stream
     FILE* in_stream = NULL;
-    if (argc >= 1) {
+    if (argc > 1) {
         if ((in_stream = fopen(argv[1], "r")) == NULL) {
             fprintf(stderr, "Failed to open file %s.\n", argv[1]);
             return 1;
