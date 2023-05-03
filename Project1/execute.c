@@ -45,12 +45,8 @@ void execute_piped_command(char* commands[MAX_COMMANDS][MAX_ARGS], int pipes[][2
             }
         }
         // specify input and output fd
-        int input_fd = (i > 0) ? pipes[i - 1][0] : (
-            file_infd == -1 ? file_infd : STDIN_FILENO
-            );
-        int output_fd = (i < num_commands - 1) ? pipes[i][1] : (
-            file_outfd == -1 ? file_outfd : STDOUT_FILENO
-            );
+        int input_fd = (i > 0) ? pipes[i - 1][0] : (file_infd == -1 ? STDIN_FILENO : file_infd);
+        int output_fd = (i < num_commands - 1) ? pipes[i][1] : (file_outfd == -1 ? STDOUT_FILENO : file_outfd);
         // execute command with specified fd
         execute_command(commands[i], input_fd, output_fd);
         // close the previous fd
