@@ -29,14 +29,22 @@ int parse_command(char* command, char* commands[MAX_COMMANDS][MAX_ARGS], char* f
         } else {
             int len = strlen(token);
             char* cmd = token;
-            if (token[0] == '\'' && token[len - 1] != '\'') {
-                for (; token != NULL; token = strtok(NULL, " \n")) {
-                    *(token - 1) = ' ';
-                    int len = strlen(token);
-                    if (token[len - 1] == '\'') {
-                        break;
+            if (token[0] == '\'') {
+                if (token[len - 1] != '\'') {
+                    for (char next = 0; token != NULL; token = strtok(NULL, " \n")) {
+                        if (next != 0)
+                            *(token - 1) = ' ';
+                        next = 1;
+                        int len = strlen(token);
+                        if (token[len - 1] == '\'') {
+                            token[len - 1] = 0;
+                            break;
+                        }
                     }
                 }
+                else token[len - 1] = 0;
+                cmd++;
+                
             }
             // save the command token
             commands[(*num_commands)][command_length] = cmd;
