@@ -13,7 +13,7 @@ cp -a "${testName}.sh" "${testName}"/* "${sysTmp}/"
 echo "Using test suite ${testName}":
 cat "${testName}.sh"
 echo "Testing program: "
-sh -c "cd \"$progTmp\" && $(pwd)/../mysh < ${testName}.sh"
+sh -c "cd \"$progTmp\" && $(pwd)/../mysh ${testName}.sh"
 echo
 echo "Making system shell sample: "
 sh -c "cd \"$sysTmp\" && sh -x \"$sysTmp\"/${testName}.sh"

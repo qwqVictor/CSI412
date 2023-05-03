@@ -4,18 +4,27 @@
 #include <stdio.h>
 #include <sys/wait.h>
 
-int main() {
+#define instream (in_stream == NULL ? stdin : in_stream)
+int main(int argc, char const *argv[]) {
     char buffer[BUFFER_SIZE];
     char* commands[MAX_COMMANDS][MAX_ARGS];
     char* file_remap[2];
+    FILE* in_stream = NULL;
+    if (argc >= 1) {
+        if ((in_stream = fopen(argv[1], "r")) == NULL) {
+            fprintf(stderr, "Failed to open file %s.", argv[1]);
+            return 1;
+        }
+    }
     while (1) {
         int num_commands = 0;
         file_remap[0] = NULL;
         file_remap[1] = NULL;
         // read user input
-        printf("MyShPrompt> ");
-        fgets(buffer, BUFFER_SIZE, stdin);
-        if (feof(stdin)) {
+        if (in_stream == NULL)
+            printf("MyShPrompt> ");
+        fgets(buffer, BUFFER_SIZE, instream);
+        if (feof(instream)) {
             exit(EXIT_SUCCESS);
         }
         // parse commands
@@ -34,5 +43,6 @@ int main() {
             wait(NULL);
         }
     }
+    fclose(instream);
     return 0;
 }
