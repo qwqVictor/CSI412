@@ -39,7 +39,7 @@ void execute_piped_command(char* commands[MAX_COMMANDS][MAX_ARGS], int pipes[][2
             }
         }
         if (i == num_commands - 1 && file_remap[1] != NULL) {
-            if ((file_outfd = open(file_remap[1], O_WRONLY)) == -1) {
+            if ((file_outfd = open(file_remap[1], O_WRONLY | O_CREAT, 0644)) == -1) {
                 perror("open > failed");
                 exit(EXIT_FAILURE);
             }
