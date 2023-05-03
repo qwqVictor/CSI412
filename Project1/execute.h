@@ -7,6 +7,6 @@
 #include <fcntl.h>
 #include "limits.h"
 
-extern void execute_command(char* command[], int input_fd, int output_fd);
-extern void execute_piped_command(char* commands[MAX_COMMANDS][MAX_ARGS], int pipes[][2], char* file_remap[2], int num_commands);
+int execute_command(char* command[], int input_fd, int output_fd);
+int execute_piped_command(char* commands[MAX_COMMANDS][MAX_ARGS], int pipes[][2], char* file_remap[2], int num_commands);
 #endif

@@ -19,10 +19,16 @@ int main() {
             exit(EXIT_SUCCESS);
         }
         // parse commands
-        parse_command(buffer, commands, file_remap, &num_commands);
+        if (parse_command(buffer, commands, file_remap, &num_commands) == -1) {
+            fprintf(stderr, "Invalid syntax!\n");
+            continue;
+        };
         // execute commands
         int pipes[num_commands - 1][2];
-        execute_piped_command(commands, pipes, file_remap, num_commands);
+        if (execute_piped_command(commands, pipes, file_remap, num_commands) == -1) {
+            fprintf(stderr, "Error executing.\n");
+            continue;
+        };
         // wait for child processes to finish
         for (int i = 0; i < num_commands; i++) {
             wait(NULL);
