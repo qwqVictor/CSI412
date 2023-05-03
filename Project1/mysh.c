@@ -12,7 +12,7 @@ int main(int argc, char const *argv[]) {
     FILE* in_stream = NULL;
     if (argc >= 1) {
         if ((in_stream = fopen(argv[1], "r")) == NULL) {
-            fprintf(stderr, "Failed to open file %s.", argv[1]);
+            fprintf(stderr, "Failed to open file %s.\n", argv[1]);
             return 1;
         }
     }
@@ -46,3 +46,4 @@ int main(int argc, char const *argv[]) {
     fclose(instream);
     return 0;
 }
+#undef instream
