@@ -9,6 +9,7 @@ int main(int argc, char const *argv[]) {
     char buffer[BUFFER_SIZE];
     char* commands[MAX_COMMANDS][MAX_ARGS];
     char* file_remap[2];
+    // read the stream
     FILE* in_stream = NULL;
     if (argc >= 1) {
         if ((in_stream = fopen(argv[1], "r")) == NULL) {

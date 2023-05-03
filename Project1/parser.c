@@ -4,7 +4,6 @@ int parse_command(char* command, char* commands[MAX_COMMANDS][MAX_ARGS], char* f
     int command_length = 0;
     // split token with spaces
     for (char* token = strtok(command, " \n"); token != NULL; token = strtok(NULL, " \n")) {
-
         // check if the token is the pipe symbol
         if (strcmp(token, "|") == 0) {
             // terminate the last command
@@ -13,7 +12,7 @@ int parse_command(char* command, char* commands[MAX_COMMANDS][MAX_ARGS], char* f
             (*num_commands)++;
             // reset command length
             command_length = 0;
-        } else if (strcmp(token, ">") == 0) {
+        } else if (strcmp(token, ">") == 0) {   // handle file redirection
             token = strtok(NULL, " \n");
             if (token != NULL) {
                 file_remap[1] = token;
@@ -29,6 +28,7 @@ int parse_command(char* command, char* commands[MAX_COMMANDS][MAX_ARGS], char* f
         } else {
             int len = strlen(token);
             char* cmd = token;
+            // parse token with quote
             if (token[0] == '\'') {
                 if (token[len - 1] != '\'') {
                     for (char next = 0; token != NULL; token = strtok(NULL, " \n")) {
@@ -44,7 +44,6 @@ int parse_command(char* command, char* commands[MAX_COMMANDS][MAX_ARGS], char* f
                 }
                 else token[len - 1] = 0;
                 cmd++;
-                
             }
             // save the command token
             commands[(*num_commands)][command_length] = cmd;
