@@ -15,4 +15,4 @@ clean:
 
 .PHONY: test
 test:
-	./test/test.sh
+	./test/test.sh countryCity
