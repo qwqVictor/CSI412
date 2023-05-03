@@ -12,3 +12,7 @@ mysh: $(OBJECTS)
 .PHONY: clean
 clean: 
 	rm -rf mysh $(OBJECTS)
+
+.PHONY: test
+test:
+	./test/test.sh
