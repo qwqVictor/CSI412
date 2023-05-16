@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
         exit(0);
     }
 
-    // 建立与服务器端的连接
+    // create connection
     portno = atoi(argv[2]);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0)
@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
 
     while (!feof(stdin)) {
         printf("> ");
-        // 解析客户端提供的参数
+        // get command line
         bzero(buffer, MAX_BUF_SIZE);
         fgets(buffer, MAX_BUF_SIZE, stdin);
         if (buffer[0] == 't')
@@ -77,12 +77,12 @@ int main(int argc, char* argv[]) {
         else if (buffer[0] == 'c') {
             type = COUNT;
         }
-        // 构造客户端请求字符串，并发送给服务器端
+        // send command
         n = write(sockfd, buffer, strlen(buffer));
         if (n < 0)
             error("ERROR writing to socket");
 
-        // 接收服务器端的响应，并根据服务类型做出相应处理
+        // receive response
         bzero(buffer, MAX_BUF_SIZE);
 
         if (type == COUNT) {

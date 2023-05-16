@@ -24,11 +24,11 @@
 
 #define MAX_BUF_SIZE 1024
 
-// 功能类型，固定为 toUpper 或 count
+// feature type
 enum { TO_UPPER,
        COUNT };
 
-// 错误处理函数
+// error handler
 void error(const char* msg) {
     perror(msg);
     exit(1);
@@ -56,7 +56,7 @@ int countCharInFile(char* fileName, char c) {
     char ch = fgetc(fp);
     while (ch != EOF) {
         if (ch == c)
-            count++; // 如果是要计数的字符，计数器加一
+            count++;
         ch = fgetc(fp);
     }
 
@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
         error("ERROR on accept");
 
     while (1) {
-        // 接收并处理客户端发送的请求
+        // handle request
         bzero(buffer, MAX_BUF_SIZE);
         n = read(newsockfd, buffer, MAX_BUF_SIZE - 1);
 
@@ -113,7 +113,7 @@ int main(int argc, char* argv[]) {
         char c = 0;
         char* fileName = NULL;
         bzero(tokens, sizeof(tokens));
-        // 解析客户端请求中的参数
+        // parse arguments
         int i = 0;
         do {
             tokens[i] = token;
