@@ -136,7 +136,6 @@ int main(int argc, char* argv[]) {
                 error("ERROR open file");
 
             makeTXTName(fileName, "Upper.txt", resultFileName, MAX_BUF_SIZE);
-            fprintf(stderr, "resultFileName: %s\n", resultFileName);
             FILE* outFP = fopen(resultFileName, "w");
             if (outFP == NULL)
                 outFP = stdout;
