@@ -1,6 +1,7 @@
 CC := gcc
-CFLAGS := -I.
-DEPS = 
+CFLAGS := -I. -lpthread
+DEPS = message_queue.h
+OBJECTS = message_queue.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -9,12 +10,12 @@ DEPS =
 default:
 	make producer consumer
 
-producer: producer.o
+producer: producer.o $(OBJECTS)
 	$(CC) -o $@ $^ $(CFLAGS)
 
-consumer: consumer.o
+consumer: consumer.o $(OBJECTS)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
 clean: 
-	rm -rf producer producer.o consumer consumer.o
+	rm -rf producer consumer producer.o consumer.o $(OBJECTS)
