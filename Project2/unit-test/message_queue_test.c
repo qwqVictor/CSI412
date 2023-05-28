@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <stdlib.h>
 
 struct message_queue q;
 
@@ -16,7 +17,7 @@ void* thread_test(void* args) {
     char buf[10];
     struct argtype* arg = args;
     fprintf(stderr, "thread %d: mq_push: %d\n", arg->id, mq_push(&q, arg->buffer, arg->bufsize));
-    usleep(arg->sleeptime);
+    usleep(1000 * arg->sleeptime);
     fprintf(stderr, "thread %d: mq_pop: %d\n", arg->id, mq_pop(&q, buf, 10));
     puts(buf);
     bzero(buf, 10);
@@ -31,7 +32,7 @@ int main(int argc, char const *argv[]) {
         1,
         "test1",
         sizeof("test1"),
-        2500
+        1500
     });
     pthread_create(&new2, NULL, thread_test, &(struct argtype){
         2, 
