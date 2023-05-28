@@ -4,10 +4,11 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#define MAX_PATH_LINE (0xFF)
 
 int main() {
-    char filename[100];
-    char location[100];
+    char filename[MAX_PATH_LINE];
+    char location[MAX_PATH_LINE];
     char character[2];
 
     printf("Enter file name: ");
@@ -37,12 +38,12 @@ int main() {
         fprintf(stderr, "Error creating child process.\n");
         return EXIT_FAILURE;
     }
-    char result_filename[255];
+    char result_filename[MAX_PATH_LINE];
     // Parent process will read from pipe
     close(pipefd[1]);
     FILE* child_stdout = fdopen(pipefd[0], "r");
     wait(NULL);
-    fgets(result_filename, 255, child_stdout);
+    fgets(result_filename, MAX_PATH_LINE, child_stdout);
     printf("Acknowledged result file: %s\n", result_filename);
 
     // Remove newline character from result
@@ -55,7 +56,7 @@ int main() {
         return 1;
     }
 
-    char line[100];
+    char line[BUFSIZ];
     while (fgets(line, sizeof(line), result_file)) {
         fputs(line, stdout);
     }
