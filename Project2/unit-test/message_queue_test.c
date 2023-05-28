@@ -17,6 +17,7 @@ struct argtype {
 void* thread_test(void* args) {
     char buf[10];
     struct argtype* arg = args;
+    usleep(100 * arg->sleeptime);
     fprintf(stderr, "thread %d: mq_push: %d\n", arg->id, mq_push(&q, arg->buffer, arg->bufsize));
     usleep(1000 * arg->sleeptime);
     fprintf(stderr, "thread %d: mq_pop: %d\n", arg->id, mq_pop(&q, buf, 10));
