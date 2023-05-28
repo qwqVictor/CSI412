@@ -2,7 +2,7 @@
 #include <pthread.h>
 #define VICTOR_MESSAGE_QUEUE
 
-#define MQ_BUFFER_SIZE (10)
+#define MQ_BUFFER_SIZE (100)
 
 struct message_queue_node {
     char* buffer;

@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -I. -lpthread
-DEPS = message_queue.h
+DEPS = message_queue.h macros.h
 OBJECTS = message_queue.o
 
 %.o: %.c $(DEPS)
