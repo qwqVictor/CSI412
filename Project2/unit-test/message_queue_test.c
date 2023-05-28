@@ -12,7 +12,7 @@ struct argtype {
     int sleeptime;
 };
 
-void thread_test(void* args) {
+void* thread_test(void* args) {
     char buf[10];
     struct argtype* arg = args;
     fprintf(stderr, "thread %d: mq_push: %d\n", arg->id, mq_push(&q, arg->buffer, arg->bufsize));
