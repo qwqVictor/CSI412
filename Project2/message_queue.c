@@ -1,4 +1,6 @@
 #include "message_queue.h"
+#include <stdlib.h>
+#include <string.h>
 
 /* Function to initialize a message queue struct */
 int mq_initialize(struct message_queue* q) {
